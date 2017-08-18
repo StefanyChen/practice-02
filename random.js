@@ -10,18 +10,17 @@ function RandomGenerator(a){
 	this.min=a.min;
 	this.max=a.max;
 	this.times=a.times;
-	console.log(this.times);
 	this.count=0;
-	for(this.count ; this.count < this.times;this.count++) {
 
-		this.ran=Math.floor(Math.random()*91)+10;
-		this.hasNext = function hasNext(){
-			if(this.count < this.times)
-				return true;
+	this.hasNext = function hasNext(){
+		if(this.count<this.times){
+			return true;
+		}else {
+			return false;
 		}
-		this.get= function get(){
-			return this.ran;
-		}
+	}
+	this.get= function get(){
+		return this.ran=Math.floor(Math.random()*(this.max-this.min+1))+this.min;
 	}
 }
 
@@ -34,9 +33,9 @@ var first_generator = new RandomGenerator({
 	times : 5
 });
 
-console.log(first_generator);
 while(first_generator.hasNext()){
 	console.log(first_generator.get());
+	first_generator.count++;
 }
 
 //2. 隨機從給予的資料中選取5個不重複的結果
